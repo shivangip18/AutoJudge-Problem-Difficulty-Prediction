@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AutoJudge</title>
+
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #c1a080c0;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: lab(57.88% 18.41 9.68);
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .badge {
+        padding: 6px 12px;
+        border-radius: 12px;
+        color: #eae0cf;
+        font-weight: bold;
+        text-transform: capitalize;
+      }
+
+      .badge.easy {
+        background-color: #28a745;
+      }
+
+      .badge.medium {
+        background-color: #fd7e14;
+      }
+
+      .badge.hard {
+        background-color: #c24653;
+      }
+
+      h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-weight: bold;
+        display: block;
+        margin-top: 15px;
+      }
+
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+      }
+
+      textarea {
+        resize: vertical;
+      }
+
+      button {
+        margin-top: 20px;
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #432323;
+      }
+
+      .result {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #f1f8ff;
+        border-left: 5px solid #432323;
+        border-radius: 5px;
+      }
+
+      .result h3 {
+        margin-top: 0;
+        color: #333;
+      }
+
+      .result p {
+        font-size: 16px;
+        margin: 8px 0;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 30px;
+        color: #777;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>AutoJudge – Programming Problem Difficulty Predictor</h2>
+
+      <form method="POST">
+        <label>Problem Title</label>
+        <input type="text" name="title" />
+
+        <label>Problem Description</label>
+        <textarea name="description" rows="6"></textarea>
+
+        <label>Input Description</label>
+        <textarea name="input_description" rows="4"></textarea>
+
+        <label>Output Description</label>
+        <textarea name="output_description" rows="4"></textarea>
+
+        <button type="submit">Predict Difficulty</button>
+
+        <a
+          href="/"
+          style="
+            margin-left: 15px;
+            text-decoration: none;
+            background: #6c757d;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            display: inline-block;
+          "
+        >
+          Clear
+        </a>
+      </form>
+
+      {% if predicted_class %}
+      <div class="result">
+        <h3>Prediction Results</h3>
+
+        {% if explanations %}
+        <hr />
+        <h4>Why this prediction?</h4>
+        <ul>
+          {% for exp in explanations.split(' | ') %}
+          <li>{{ exp }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        <p>
+          <strong>Difficulty Class:</strong>
+          <span class="badge {{ predicted_class|lower }}">
+            {{ predicted_class }}
+          </span>
+        </p>
+
+        <p><strong>Difficulty Score:</strong> {{ predicted_score }}</p>
+        <p><strong>Confidence:</strong> {{ confidence }}%</p>
+      </div>
+      {% endif %}
+
+      <div class="footer">
+        AutoJudge | ML-based Difficulty Prediction System
+      </div>
+    </div>
+  </body>
+</html>

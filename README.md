@@ -60,17 +60,6 @@ The UI is implemented using HTML templates and runs locally.
 
 ---
 
-## ▶️ Demo Video
-🎥 [Click here to watch the demo](https://youtu.be/T8cjYp5D8lc?si=82cpl-topJZmuHIv)
-
-
-The demo showcases:
-- Brief project explanation
-- Model approach
-- Working web interface with predictions
-
----
-
 ## 🚀 Steps to Run the Project Locally
 
 ### 1. Clone the repository

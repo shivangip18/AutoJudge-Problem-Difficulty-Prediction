@@ -97,10 +97,7 @@ http://127.0.0.1:5000/
 ---
 
 ## 👤 Author Details
-**Name:** Devansh Pandey  
-**Enrollment Number:** 23113049  
-**Branch:** Civil Engineering, 3rd Year  
-
+**Name:** Shivangi Pandey
 ---
 
 ## 📌 Notes
